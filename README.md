@@ -1,6 +1,6 @@
-# Connect 4 — Browser Game (Human vs Human / Human vs AI)
+# Connect4 — Browser Game (Human vs Human / Human vs AI)
 
-A polished **Connect 4** game you can play directly in the browser. Challenge a friend (**Human vs Human**) or take on an AI opponent (**Human vs AI**) with four difficulty levels. Includes smooth, gravity-style disc drop animations, undo support, and a clean modern UI.
+A polished **Connect4** game you can play directly in the browser. Challenge a friend (**Human vs Human**) or take on an AI opponent (**Human vs AI**) with four difficulty levels. Includes smooth, gravity-style disc drop animations, undo support, and a clean modern UI.
 
 **Created by:** Salim Kashou  
 **GitHub:** https://github.com/SalimKashou  
