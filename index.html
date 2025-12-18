@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connect 4 — Browser Game</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Script (defer ensures DOM is ready before JS runs) -->
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="page">
+    <div class="titleWrap" role="banner" aria-label="Connect 4">
+      <div class="titleArt" aria-hidden="true">
+        <span class="titleDisc r"></span>
+        <span class="titleDisc y"></span>
+        <span class="titleDisc b"></span>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative; z-index:1; opacity:.92">
+          <rect x="6" y="10" width="28" height="22" rx="8" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+          <circle cx="14" cy="18" r="3.2" fill="rgba(255,77,77,.95)"/>
+          <circle cx="20" cy="18" r="3.2" fill="rgba(255,219,77,.95)"/>
+          <circle cx="26" cy="18" r="3.2" fill="rgba(122,162,255,.95)"/>
+          <circle cx="14" cy="24" r="3.2" fill="rgba(122,162,255,.80)"/>
+          <circle cx="20" cy="24" r="3.2" fill="rgba(255,77,77,.80)"/>
+          <circle cx="26" cy="24" r="3.2" fill="rgba(255,219,77,.80)"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="pageTitle">Connect 4</h1>
+        <div class="pageTagline">Drop • Connect • Win — Human vs Human or Human vs AI</div>
+      </div>
+    </div>
+
+    <div class="app">
+      <!-- Game board (left) -->
+      <div class="card boardCard" id="boardCard">
+        <header>
+          <div>
+            <h1>Connect 4</h1>
+            <div class="sub" id="subHeader">Drop discs. Connect 4 to win.</div>
+          </div>
+          <div class="pill" id="turnPill">
+            <span class="statusDot p1" id="turnDot"></span>
+            <span id="turnText">Player 1</span>
+          </div>
+        </header>
+
+        <div class="boardWrap">
+          <div class="hoverColumn" id="hoverRow" aria-hidden="true"></div>
+          <div class="dropLayer" id="dropLayer" aria-hidden="true"></div>
+          <div class="board" role="application" aria-label="Connect 4 board">
+            <div class="grid" id="grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings (right) -->
+      <div class="card">
+        <div class="sidebar">
+          <div class="section mode">
+            <h2>Mode</h2>
+            <label for="mode">Game mode</label>
+            <select id="mode">
+              <option value="hvh">Human vs Human</option>
+              <option value="hva" selected>Human vs AI</option>
+            </select>
+
+            <div style="height:10px"></div>
+
+            <label for="difficulty">AI difficulty</label>
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+              <option value="extreme">Extreme</option>
+            </select>
+
+            <div style="height:10px"></div>
+
+            <label for="first">First move</label>
+            <select id="first">
+              <option value="p1">Player 1 (Red)</option>
+              <option value="p2">Player 2 (Yellow / AI)</option>
+            </select>
+
+            <div class="small" style="margin-top:10px">
+              Tip: Use <span class="kbd">1</span>–<span class="kbd">7</span> to drop into a column.
+            </div>
+          </div>
+
+          <div class="section actions">
+            <h2>Actions</h2>
+            <div class="row">
+              <button id="newGame" class="primary">New game</button>
+              <button id="undo" class="secondary">Undo</button>
+            </div>
+            <div style="height:10px"></div>
+            <button id="reset" class="danger smallReset">Reset settings + new game</button>
+            <div class="small" style="margin-top:10px">
+              Undo works in both modes. In Human vs AI it undoes the AI move too.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About the AI (full width) -->
+    <div class="card aboutWide" id="aboutAi">
+      <div class="aboutInner">
+        <h2>About the AI</h2>
+        <div class="aboutCopy">
+          <p>
+            The AI opponent uses a classic <b>minimax</b> search with <b>alpha–beta pruning</b>. It simulates future moves,
+            scores the resulting positions, and chooses the option that leads to the best outcome (while assuming you’ll play optimally too).
+          </p>
+          <div class="aboutGrid">
+            <div><b>Easy</b>: Random valid move. Best for learning and quick casual rounds.</div>
+            <div><b>Medium</b>: Shallow search. Blocks obvious threats and spots simple wins.</div>
+            <div><b>Hard</b>: Deeper search. Sets traps and punishes mistakes more consistently.</div>
+            <div><b>Extreme</b>: Deepest search + better move ordering. Very tough to beat.</div>
+          </div>
+          <div class="muted" style="margin-top:10px">
+            Tip: Higher difficulties may take a brief moment to think, especially on older devices.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="siteFooter" role="contentinfo">
+    <span>Created by <strong>Salim Kashou</strong></span>
+    <span>•</span>
+    <span>
+      <a href="https://github.com/SalimKashou" target="_blank" rel="noopener noreferrer">GitHub · @SalimKashou</a>
+    </span>
+    <span>•</span>
+    <span>A personal, non‑profit project built for learning, experimentation, and fun • Created using ChatGPT 5.2</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
