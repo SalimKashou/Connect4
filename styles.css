@@ -458,7 +458,6 @@ body.won-draw #turnPill{ border-color: rgba(122, 162, 255, .45); box-shadow: 0 0
 }
 .toast.show{ opacity:1; transform: translateX(-50%) translateY(-4px); }
 
-/* --- Footer --- */
 footer.siteFooter{
   margin-top: auto;
   padding-top: 14px;
@@ -467,6 +466,12 @@ footer.siteFooter{
   color: var(--muted);
   opacity: .75;
   line-height: 1.4;
+
+  /* ✅ allow wrapping nicely on small screens */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 10px;
 }
 
 footer.siteFooter a{
@@ -476,4 +481,8 @@ footer.siteFooter a{
 }
 
 footer.siteFooter a:hover{ opacity: .9; }
-footer.siteFooter span{ white-space: nowrap; }
+
+/* ✅ remove the nowrap rule entirely (or override it like this) */
+footer.siteFooter span{ white-space: normal; }
+
+
